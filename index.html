@@ -297,7 +297,14 @@ button { font: inherit; color: inherit; }
 .wrap { width: 100%; max-width: 1080px; margin-inline: auto; padding-inline: 20px; }
 
 .hero { position: relative; text-align: center; padding-block: 0 3rem; }
-#toran { display: block; width: 100%; height: 128px; pointer-events: none; }
+#toran { display: block; width: 100%; height: 170px; pointer-events: none; overflow: visible; }
+#toran .bulb { animation: twinkle var(--t, 2.4s) ease-in-out var(--dl, 0s) infinite alternate; }
+@keyframes twinkle { 0%, 40% { opacity: 1; } 100% { opacity: .28; } }
+
+/* disco lights behind the whole invite */
+.page-beams { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: .32; }
+.page-beams .beam { filter: blur(14px); will-change: transform; }
+#page { position: relative; z-index: 1; }
 .hero-inner { display: grid; justify-items: center; gap: 1.1rem; margin-top: .5rem; }
 .eyebrow {
   margin: 0;
@@ -515,7 +522,7 @@ section.block { padding-block: 3.5rem; }
 @media (max-width: 420px) {
   .wrap { padding-inline: 16px; }
   .datebar { gap: .4rem .6rem; padding-inline: .5rem; letter-spacing: .02em; font-size: clamp(.82rem, 4vw, .95rem); white-space: nowrap; }
-  #toran { height: 100px; }
+  #toran { height: 138px; }
   .stamp { width: 88px; height: 88px; }
   .host { padding: 1.15rem; }
 }
@@ -616,6 +623,8 @@ section.block { padding-block: 3.5rem; }
 </svg>
 
 <!-- ============ PAGE ============ -->
+<div class="page-beams" aria-hidden="true"><span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span></div>
+
 <main id="page">
   <header class="hero">
     <svg id="toran" aria-hidden="true"></svg>
@@ -837,8 +846,24 @@ const INVITE = {
     const w = svg.clientWidth || innerWidth;
     const h = svg.clientHeight || 120;
     const n = Math.max(3, Math.round(w / (w < 600 ? 105 : 150)));
-    const sw = w / n, depth = Math.min(h * .42, sw * .38);
+    const sw = w / n, depth = Math.min(w < 600 ? 42 : 54, sw * .38);
     let out = `<line x1="0" y1="5" x2="${w}" y2="5" stroke="#6B4A1F" stroke-width="1.5"/>`;
+    // fairy lights: one long draped strand, swags twice as wide as the garland's, sitting under it
+    const fw = sw * 2, fd = h - 26, cols = ["#FFF1C9", "#FFF1C9", "#F5B83D", "#FF8DB8", "#FFF1C9", "#7FE3D4"];
+    let bi = 0;
+    for (let x0 = -sw; x0 < w + sw; x0 += fw) {
+      const yAt = t => 12 + 4 * fd * t * (1 - t);
+      out += `<path d="M${x0} 12 Q${x0 + fw / 2} ${12 + 2 * fd} ${x0 + fw} 12" fill="none" stroke="#3A2C1A" stroke-width="1"/>`;
+      const k = Math.round(fw / 19);
+      for (let j = 1; j < k; j++) {
+        const t = j / k, x = x0 + fw * t, y = yAt(t), c = cols[bi++ % cols.length];
+        if (x < -6 || x > w + 6) continue;
+        out += `<g class="bulb" style="--dl:${(-Math.random() * 3).toFixed(2)}s;--t:${(1.6 + Math.random() * 1.8).toFixed(2)}s">` +
+          `<circle cx="${x.toFixed(1)}" cy="${(y + 3).toFixed(1)}" r="9" fill="${c}" opacity=".16"/>` +
+          `<circle cx="${x.toFixed(1)}" cy="${(y + 3).toFixed(1)}" r="4.2" fill="${c}" opacity=".35"/>` +
+          `<circle cx="${x.toFixed(1)}" cy="${(y + 3).toFixed(1)}" r="2.3" fill="${c}"/></g>`;
+      }
+    }
     for (let i = 0; i < n; i++) {
       const x0 = i * sw, k = 10;
       for (let j = 1; j < k; j++) {
