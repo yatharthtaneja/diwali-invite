@@ -1228,8 +1228,8 @@ const INVITE = {
   /* ---------- the intro song (intro.mp3), with the synth track as a fallback ---------- */
   const Song = (() => {
     const el = $("#intro-song");
-    const BEAT = 570;            // ~105 BPM
-    const DROP = 6840;           // ms into the clip where the drop lands
+    const BEAT = 560;            // ~107 BPM
+    const DROP = 11060;          // ms into the clip where the first big hit lands
     let failed = false, fadeT = null;
     el.addEventListener("error", () => { failed = true; });
     const playing = () => !el.paused && !el.ended;
@@ -1284,10 +1284,10 @@ const INVITE = {
 
     function open(withSound) {
       if (opened) return; opened = true;
-      let lead = 0, B = Music.BEAT;
+      let lead = 0, B = Music.BEAT, song = false;
       if (withSound) {
         if (!Song.failed) {
-          B = Song.BEAT;
+          song = true; B = Song.BEAT;
           Song.play(0).catch(() => Music.play(.85));
         } else {
           lead = Music.play(.85);
@@ -1295,29 +1295,31 @@ const INVITE = {
       }
       intro.style.setProperty("--beat", B + "ms");
       const BAR = B * 4, cue = (ms, fn) => at(lead + ms, fn);
+      // everything is timed back from the drop
+      const DROP = song ? Song.DROP : BAR * 3;
+      const CARDS = DROP - BAR * 2, GLASSES = DROP - BAR, GROOVE = song ? DROP - BAR : CARDS;
       intro.classList.add("is-open");
       const { W, H } = Sky.size;
-      // bar 1: build
-      cue(0, () => Sky.launch(W * .24, H * .24, { palette: 1, type: "ring" }));
-      cue(B * 2, () => Sky.launch(W * .76, H * .2, { palette: 2, type: "peony" }));
-      // bar 2: groove, cards slam in on beats 1-2-3
-      cue(BAR, () => { intro.classList.add("is-groove", "is-cards"); });
-      // bar 3: build-up, glasses clink on beat 2
-      cue(BAR * 2, () => intro.classList.add("is-glasses"));
-      cue(BAR * 2 + 640, () => {
+      // opening: fireworks every couple of beats until the cards arrive
+      for (let t = 0, i = 0; t < CARDS - B; t += B * 2.5, i++) {
+        cue(t, () => Sky.launch(rnd(W * .15, W * .85), rnd(H * .12, H * .3), { palette: i % 6, scale: .9 }));
+      }
+      cue(CARDS, () => intro.classList.add("is-cards"));
+      cue(GROOVE, () => intro.classList.add("is-groove"));
+      cue(GLASSES, () => intro.classList.add("is-glasses"));
+      cue(GLASSES + 640, () => {
         const g = $(".glasses").getBoundingClientRect();
         Sky.burst(g.left, g.top + 8, { palette: 4, type: "sparkle", count: 40, scale: 1 });
         Music.clink();
       });
-      cue(BAR * 3 - B * 4, () => intro.classList.add("is-build"));
-      // bar 4: the drop
-      cue(BAR * 3, () => {
+      cue(DROP - B * 4, () => intro.classList.add("is-build"));
+      cue(DROP, () => {
         intro.classList.add("is-drop", "is-title");
         Sky.confetti(160);
         Sky.finale(8);
       });
-      cue(BAR * 4, () => Sky.finale(5));
-      cue(BAR * 5, finish);
+      cue(DROP + BAR, () => Sky.finale(5));
+      cue(DROP + BAR * 2, finish);
     }
 
     function finish() {
