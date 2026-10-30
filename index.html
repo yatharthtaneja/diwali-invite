@@ -179,7 +179,7 @@ button { font: inherit; color: inherit; }
   pointer-events: none;
 }
 #intro.is-title .intro-title { opacity: 1; transform: none; transition: opacity .15s ease, transform .55s cubic-bezier(.2, 1.3, .4, 1); }
-#intro.is-title .intro-title h2 { animation: thump .484s ease-out .484s infinite; }
+#intro.is-title .intro-title h2 { animation: thump var(--beat, .484s) ease-out var(--beat, .484s) infinite; }
 @keyframes thump { 0% { transform: scale(1.045); } 100% { transform: scale(1); } }
 .intro-title .when { font-size: .8rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--rani); }
 .intro-title h2 {
@@ -232,7 +232,7 @@ button { font: inherit; color: inherit; }
   position: absolute; inset: 0; pointer-events: none; opacity: 0;
   background: radial-gradient(60% 50% at 50% 55%, rgba(232, 106, 80, .35), transparent 70%);
 }
-#intro.is-groove .pulse { animation: kick .484s ease-out infinite; }
+#intro.is-groove .pulse { animation: kick var(--beat, .484s) ease-out infinite; }
 @keyframes kick { 0% { opacity: 1; } 100% { opacity: 0; } }
 #intro.is-build .stage-art { animation: build 1.935s ease-in forwards; }
 @keyframes build { to { transform: scale(1.08); } }
@@ -572,6 +572,8 @@ section.block { padding-block: 3.5rem; }
   <div class="flash" aria-hidden="true"></div>
   <button id="skip" type="button">Skip intro</button>
 </div>
+
+<audio id="intro-song" src="intro.mp3" preload="auto"></audio>
 
 <button id="music" type="button" aria-pressed="false" aria-label="Music">
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -1218,13 +1220,57 @@ const INVITE = {
       noise(ctx.currentTime, .3, "lowpass", 900, .8, .16);
     }
 
-    const btn = $("#music");
-    function ui() { btn.setAttribute("aria-pressed", String(on)); btn.setAttribute("aria-label", on ? "Turn music off" : "Turn music on"); }
-    btn.addEventListener("click", e => { e.stopPropagation(); on ? stop() : play(.5, true); });
-    ui();
+    function ui() { if (Music.onChange) Music.onChange(); }
     return { play, stop, clink, pop, BEAT: 60000 / BPM, get on() { return on; } };
   })();
   Sky.hooks.burst = (x, type) => Music.pop(x, type);
+
+  /* ---------- the intro song (intro.mp3), with the synth track as a fallback ---------- */
+  const Song = (() => {
+    const el = $("#intro-song");
+    const BEAT = 570;            // ~105 BPM
+    const DROP = 6840;           // ms into the clip where the drop lands
+    let failed = false, fadeT = null;
+    el.addEventListener("error", () => { failed = true; });
+    const playing = () => !el.paused && !el.ended;
+    function play(from = 0) {
+      if (failed) return Promise.reject();
+      clearInterval(fadeT);
+      el.volume = 1;
+      try { el.currentTime = from; } catch (_) {}
+      const pr = el.play();
+      return pr && pr.then ? pr : Promise.resolve();
+    }
+    function fadeOut(ms = 600) {
+      if (!playing()) return;
+      clearInterval(fadeT);
+      const step = 40, dec = el.volume / (ms / step);
+      fadeT = setInterval(() => {
+        const v = el.volume - dec;
+        if (v <= .02) { clearInterval(fadeT); el.pause(); el.volume = 1; }
+        else el.volume = v;       // iOS ignores volume; the clip has its own fade-out baked in
+      }, step);
+    }
+    el.addEventListener("play", () => btnUi());
+    el.addEventListener("pause", () => btnUi());
+    el.addEventListener("ended", () => btnUi());
+    return { play, fadeOut, playing, BEAT, DROP, get failed() { return failed; } };
+  })();
+
+  const musicBtn = $("#music");
+  function btnUi() {
+    const on = Song.playing() || Music.on;
+    musicBtn.setAttribute("aria-pressed", String(on));
+    musicBtn.setAttribute("aria-label", on ? "Turn music off" : "Turn music on");
+  }
+  Music.onChange = btnUi;
+  musicBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (Song.playing()) { Song.fadeOut(300); return; }
+    if (Music.on) { Music.stop(); return; }
+    Song.play(Song.DROP - 200).catch(() => Music.play(.5, true));
+  });
+  btnUi();
 
   /* ---------- intro sequence, cued to the track ---------- */
   let ambientOn = false;
@@ -1238,8 +1284,17 @@ const INVITE = {
 
     function open(withSound) {
       if (opened) return; opened = true;
-      const lead = withSound ? Music.play(.85) : 0;
-      const B = Music.BEAT, BAR = B * 4, cue = (ms, fn) => at(lead + ms, fn);
+      let lead = 0, B = Music.BEAT;
+      if (withSound) {
+        if (!Song.failed) {
+          B = Song.BEAT;
+          Song.play(0).catch(() => Music.play(.85));
+        } else {
+          lead = Music.play(.85);
+        }
+      }
+      intro.style.setProperty("--beat", B + "ms");
+      const BAR = B * 4, cue = (ms, fn) => at(lead + ms, fn);
       intro.classList.add("is-open");
       const { W, H } = Sky.size;
       // bar 1: build
@@ -1273,6 +1328,7 @@ const INVITE = {
       document.body.classList.add("ready");
       ambientOn = true;
       Music.stop(.6);
+      Song.fadeOut(700);
       setTimeout(() => intro.remove(), 800);
     }
     $("#open-sound").addEventListener("click", e => { e.stopPropagation(); open(true); });

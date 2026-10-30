@@ -23,4 +23,4 @@ printf '</head>\n<body>\n'
 sed '1,/<\/style>/d' page.html
 printf '</body>\n</html>\n'
 } > index.html
-mkdir -p deploy && cp index.html preview.jpg deploy/
+mkdir -p deploy && cp index.html preview.jpg intro.mp3 deploy/
