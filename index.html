@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0F0B1E">
+<meta name="theme-color" content="#120607">
 <meta name="description" content="Lights up. Cards out. Glasses full. Cards, drinks and golden lights on Fri, 6 Nov at Sushant Lok 3, Gurugram. BYOB.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Diwali Night · Fri, 6 Nov">
 <meta property="og:description" content="Lights up. Cards out. Glasses full. Cards, drinks and golden lights at Sushant Lok 3, Gurugram. BYOB. Tap to RSVP.">
-<meta property="og:image" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg">
-<meta property="og:image:secure_url" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg?v=red">
+<meta property="og:image:secure_url" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg?v=red">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Diwali Night invite: three aces under a marigold garland">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg?v=red">
 <title>Diwali Night Invite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,21 +24,21 @@
 /* Layout: a night-sky invitation. Marigold toran hangs across the top, centred title like a letterpress card,
    then the evening's details, three host cards for RSVP, and a row of unlit diyas that hides the game. */
 :root {
-  --night: #0F0B1E;
-  --dusk: #1A1430;
-  --dusk-2: #241B40;
-  --glow: #33205A;
-  --gold: #F5B83D;
-  --gold-soft: #FFDFA3;
-  --rani: #E8508A;
-  --rani-deep: #B8124F;
+  --night: #120607;
+  --dusk: #1F0B0C;
+  --dusk-2: #2C1012;
+  --glow: #7E121D;
+  --gold: #F4B060;
+  --gold-soft: #FFD9B0;
+  --rani: #FF4040;
+  --rani-deep: #C0141F;
   --leaf: #3E8E5A;
   --paper: #FBF5E8;
-  --ink: #1B1433;
-  --text: #F6EEDF;
-  --muted: #B3A8C8;
-  --line: rgba(245, 184, 61, 0.22);
-  --line-soft: rgba(246, 238, 223, 0.10);
+  --ink: #1E0A0B;
+  --text: #FBE8E1;
+  --muted: #C9A19C;
+  --line: rgba(244, 176, 96, 0.22);
+  --line-soft: rgba(251, 232, 225, 0.10);
 
   --f-display: "Rozha One", "Playfair Display", Georgia, serif;
   --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -63,7 +63,7 @@ body {
   min-height: 100%;
   background:
     radial-gradient(130% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
-    radial-gradient(80% 40% at 50% 105%, rgba(232, 80, 138, 0.10) 0%, transparent 70%),
+    radial-gradient(90% 45% at 50% 105%, rgba(255, 64, 64, 0.20) 0%, transparent 70%),
     var(--night);
   background-attachment: fixed;
   color: var(--text);
@@ -114,7 +114,7 @@ button { font: inherit; color: inherit; }
   border-radius: 10px;
   background: linear-gradient(160deg, var(--paper) 0%, #F1E6CF 100%);
   color: var(--ink);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(27, 20, 51, .08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(30, 10, 11, .08);
   font-family: var(--f-display);
 }
 .card-face.red { color: var(--rani-deep); }
@@ -187,7 +187,7 @@ button { font: inherit; color: inherit; }
   font-family: var(--f-display); font-weight: 400;
   font-size: clamp(3rem, 15vw, 5.4rem); line-height: .95;
   letter-spacing: -.01em;
-  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 70%, #D98A1F 100%);
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 70%, #D9783A 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .intro-title p { margin: .2rem 0 0; color: var(--muted); letter-spacing: .28em; text-transform: uppercase; font-size: .78rem; font-weight: 600; }
@@ -204,11 +204,11 @@ button { font: inherit; color: inherit; }
 .gate-title {
   margin: 0; font-family: var(--f-display); font-weight: 400;
   font-size: clamp(3rem, 15vw, 5rem); line-height: .95;
-  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 70%, #D98A1F 100%);
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 70%, #D9783A 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: breathe 2.4s ease-in-out infinite;
 }
-@keyframes breathe { 50% { filter: drop-shadow(0 0 18px rgba(245, 184, 61, .35)); } }
+@keyframes breathe { 50% { filter: drop-shadow(0 0 18px rgba(244, 176, 96, .35)); } }
 .gate-meta { margin: 0 0 1.2rem; color: var(--text); font-weight: 600; letter-spacing: .08em; font-size: var(--step--1); }
 
 /* disco lights + beat pulse */
@@ -224,13 +224,13 @@ button { font: inherit; color: inherit; }
   mix-blend-mode: screen;
   animation: sweep 3.87s ease-in-out infinite alternate;
 }
-.beam.b1 { background: linear-gradient(to top, rgba(232, 80, 138, .75), transparent 75%); left: 12%; animation-delay: -1s; }
-.beam.b2 { background: linear-gradient(to top, rgba(245, 184, 61, .7), transparent 75%); animation-duration: 2.9s; }
-.beam.b3 { background: linear-gradient(to top, rgba(67, 198, 181, .7), transparent 75%); left: 88%; animation-delay: -2.2s; animation-direction: alternate-reverse; }
+.beam.b1 { background: linear-gradient(to top, rgba(255, 64, 64, .75), transparent 75%); left: 12%; animation-delay: -1s; }
+.beam.b2 { background: linear-gradient(to top, rgba(244, 176, 96, .7), transparent 75%); animation-duration: 2.9s; }
+.beam.b3 { background: linear-gradient(to top, rgba(240, 133, 124, .7), transparent 75%); left: 88%; animation-delay: -2.2s; animation-direction: alternate-reverse; }
 @keyframes sweep { from { transform: rotate(-38deg); } to { transform: rotate(38deg); } }
 .pulse {
   position: absolute; inset: 0; pointer-events: none; opacity: 0;
-  background: radial-gradient(60% 50% at 50% 55%, rgba(232, 80, 138, .35), transparent 70%);
+  background: radial-gradient(60% 50% at 50% 55%, rgba(255, 64, 64, .35), transparent 70%);
 }
 #intro.is-groove .pulse { animation: kick .484s ease-out infinite; }
 @keyframes kick { 0% { opacity: 1; } 100% { opacity: 0; } }
@@ -247,14 +247,14 @@ button { font: inherit; color: inherit; }
   font-weight: 700; font-size: 1.05rem; letter-spacing: .04em;
   cursor: pointer;
   display: inline-flex; align-items: center; gap: .6rem;
-  box-shadow: 0 0 0 0 rgba(245, 184, 61, .5);
+  box-shadow: 0 0 0 0 rgba(244, 176, 96, .5);
   animation: pulse 2.2s ease-out infinite;
   transition: transform .2s var(--ease-out), background .2s;
 }
 .gate-btn:hover { background: var(--gold-soft); }
 .gate-btn:active { transform: scale(.97); }
 .gate-btn svg { width: 20px; height: 20px; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 184, 61, .45); } 100% { box-shadow: 0 0 0 22px rgba(245, 184, 61, 0); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 176, 96, .45); } 100% { box-shadow: 0 0 0 22px rgba(244, 176, 96, 0); } }
 .gate-note { margin: .2rem 0 0; color: var(--muted); font-size: var(--step--1); }
 .gate-quiet { border: 0; background: none; color: var(--muted); font-size: var(--step--1); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line); cursor: pointer; padding: .4rem; }
 .gate-quiet:hover { color: var(--text); }
@@ -265,7 +265,7 @@ button { font: inherit; color: inherit; }
   top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px;
   width: 44px; height: 44px; border-radius: 50%;
   display: grid; place-items: center;
-  background: rgba(26, 20, 48, .78);
+  background: rgba(31, 11, 12, .78);
   border: 1px solid var(--line);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   color: var(--gold-soft); cursor: pointer;
@@ -283,7 +283,7 @@ button { font: inherit; color: inherit; }
 #skip {
   position: absolute;
   right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  background: rgba(246, 238, 223, .06);
+  background: rgba(251, 232, 225, .06);
   border: 1px solid var(--line-soft);
   border-radius: 999px;
   padding: .55rem 1rem;
@@ -318,9 +318,9 @@ button { font: inherit; color: inherit; }
   font-size: var(--step-hero); line-height: .9;
   letter-spacing: -.015em;
   text-wrap: balance;
-  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 62%, #D3801A 100%);
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 62%, #D9783A 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 6px 30px rgba(245, 184, 61, .18));
+  filter: drop-shadow(0 6px 30px rgba(244, 176, 96, .18));
 }
 .hero .lede { margin: 0; max-width: 34ch; font-size: clamp(1.05rem, 3.6vw, 1.3rem); color: var(--text); text-wrap: balance; }
 .hero .lede em { font-style: normal; color: var(--gold-soft); font-family: var(--f-display); font-size: 1.25em; line-height: 1.5; }
@@ -352,7 +352,7 @@ button { font: inherit; color: inherit; }
 .btn svg { width: 18px; height: 18px; flex: none; }
 .btn-gold { background: var(--gold); color: var(--ink); }
 .btn-gold:hover { background: var(--gold-soft); }
-.btn-ghost { border-color: var(--line); color: var(--text); background: rgba(245, 184, 61, .04); }
+.btn-ghost { border-color: var(--line); color: var(--text); background: rgba(244, 176, 96, .04); }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
 
 .sky-hint { margin: .4rem 0 0; font-size: var(--step--1); color: var(--muted); }
@@ -392,8 +392,8 @@ section.block { padding-block: 3.5rem; }
 .entry {
   justify-self: start; display: inline-flex; align-items: center; gap: .45rem;
   padding: .35rem .75rem; border-radius: 999px;
-  background: rgba(232, 80, 138, .14); border: 1px solid rgba(232, 80, 138, .4);
-  color: #FFD3E4; font-size: var(--step--1); font-weight: 600;
+  background: rgba(255, 64, 64, .14); border: 1px solid rgba(255, 64, 64, .4);
+  color: #FFD0C9; font-size: var(--step--1); font-weight: 600;
 }
 .entry svg { width: 15px; height: 15px; flex: none; }
 .detail .btn { justify-self: start; margin-top: .6rem; }
@@ -425,8 +425,8 @@ section.block { padding-block: 3.5rem; }
   border-radius: 50%;
   display: grid; place-items: center;
   font-family: var(--f-display); font-size: 1.5rem; color: var(--ink);
-  background: radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold) 60%, #C9771A);
-  box-shadow: 0 0 0 4px rgba(245, 184, 61, .12);
+  background: radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold) 60%, #C96A30);
+  box-shadow: 0 0 0 4px rgba(244, 176, 96, .12);
 }
 .host-name { font-family: var(--f-display); font-size: var(--step-1); line-height: 1.15; overflow-wrap: anywhere; }
 .host-phone { color: var(--muted); font-variant-numeric: tabular-nums; user-select: all; -webkit-user-select: all; font-size: var(--step--1); }
@@ -468,7 +468,7 @@ section.block { padding-block: 3.5rem; }
   position: fixed; inset: 0; z-index: 70;
   display: grid; place-items: center;
   padding: 16px;
-  background: rgba(10, 7, 22, .72);
+  background: rgba(18, 6, 7, .72);
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   opacity: 0; transition: opacity .35s ease;
 }
@@ -585,16 +585,16 @@ section.block { padding-block: 3.5rem; }
       <stop offset="1" stop-color="#E9A12E"/>
     </linearGradient>
     <radialGradient id="mgA" cx=".4" cy=".35" r=".7">
-      <stop offset="0" stop-color="#FFE08A"/><stop offset=".6" stop-color="#F5B83D"/><stop offset="1" stop-color="#C97A12"/>
+      <stop offset="0" stop-color="#FFE08A"/><stop offset=".6" stop-color="#F4B060"/><stop offset="1" stop-color="#C97A12"/>
     </radialGradient>
     <radialGradient id="mgB" cx=".4" cy=".35" r=".7">
       <stop offset="0" stop-color="#FFB46B"/><stop offset=".6" stop-color="#F07C1E"/><stop offset="1" stop-color="#B4500C"/>
     </radialGradient>
     <radialGradient id="flameG" cx=".5" cy=".75" r=".75">
-      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#FFE7A0"/><stop offset=".75" stop-color="#F5A623"/><stop offset="1" stop-color="#E8508A" stop-opacity=".0"/>
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#FFE7A0"/><stop offset=".75" stop-color="#F5A623"/><stop offset="1" stop-color="#FF4040" stop-opacity=".0"/>
     </radialGradient>
     <radialGradient id="haloG" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="#F5B83D" stop-opacity=".55"/><stop offset="1" stop-color="#F5B83D" stop-opacity="0"/>
+      <stop offset="0" stop-color="#F4B060" stop-opacity=".55"/><stop offset="1" stop-color="#F4B060" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="clay" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#D9773A"/><stop offset="1" stop-color="#8A3B16"/>
@@ -604,10 +604,10 @@ section.block { padding-block: 3.5rem; }
       <circle class="bubble" cx="26" cy="64" r="1.4" fill="#FFF6DA"/>
       <circle class="bubble" cx="33" cy="66" r="1.1" fill="#FFF6DA"/>
       <circle class="bubble" cx="29" cy="62" r="1" fill="#FFF6DA"/>
-      <path d="M12 6 L48 6 L44 70 Q30 86 16 70 Z" fill="rgba(255,255,255,.07)" stroke="#FFDFA3" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M12 6 L48 6 L44 70 Q30 86 16 70 Z" fill="rgba(255,255,255,.07)" stroke="#FFD9B0" stroke-width="1.6" stroke-linejoin="round"/>
       <path d="M17 12 L19 58" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
-      <rect x="28.6" y="80" width="2.8" height="60" rx="1.4" fill="#FFDFA3"/>
-      <ellipse cx="30" cy="143" rx="17" ry="4" fill="none" stroke="#FFDFA3" stroke-width="1.6"/>
+      <rect x="28.6" y="80" width="2.8" height="60" rx="1.4" fill="#FFD9B0"/>
+      <ellipse cx="30" cy="143" rx="17" ry="4" fill="none" stroke="#FFD9B0" stroke-width="1.6"/>
     </g>
     <g id="diya-art">
       <ellipse class="halo" cx="32" cy="30" rx="30" ry="30" fill="url(#haloG)"/>
@@ -615,8 +615,8 @@ section.block { padding-block: 3.5rem; }
         <path class="flame-inner" d="M32 8 C38 18 40 24 36.5 30 C34.5 33.5 29.5 33.5 27.5 30 C24 24 26 18 32 8 Z" fill="url(#flameG)"/>
       </g>
       <path d="M6 36 Q8 33 12 34 L52 34 Q56 33 58 36 Q54 56 32 57 Q10 56 6 36 Z" fill="url(#clay)"/>
-      <path d="M6 36 Q32 42 58 36" fill="none" stroke="#F5B83D" stroke-width="1.6" opacity=".9"/>
-      <path d="M14 45 Q32 50 50 45" fill="none" stroke="#FFDFA3" stroke-width="1" stroke-dasharray="1.5 3.5" stroke-linecap="round" opacity=".8"/>
+      <path d="M6 36 Q32 42 58 36" fill="none" stroke="#F4B060" stroke-width="1.6" opacity=".9"/>
+      <path d="M14 45 Q32 50 50 45" fill="none" stroke="#FFD9B0" stroke-width="1" stroke-dasharray="1.5 3.5" stroke-linecap="round" opacity=".8"/>
       <ellipse cx="32" cy="33.5" rx="4" ry="1.4" fill="#3A1A0A"/>
     </g>
   </defs>
@@ -683,10 +683,10 @@ section.block { padding-block: 3.5rem; }
           <div class="byob">
             <svg class="stamp" viewBox="0 0 100 100" aria-hidden="true">
               <defs><path id="circ" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs>
-              <circle cx="50" cy="50" r="48" fill="none" stroke="#F5B83D" stroke-width="1.2"/>
-              <circle cx="50" cy="50" r="28" fill="#E8508A"/>
+              <circle cx="50" cy="50" r="48" fill="none" stroke="#F4B060" stroke-width="1.2"/>
+              <circle cx="50" cy="50" r="28" fill="#FF4040"/>
               <g class="ring">
-                <text font-family="Figtree, sans-serif" font-size="9.2" font-weight="700" letter-spacing="2.6" fill="#FFDFA3">
+                <text font-family="Figtree, sans-serif" font-size="9.2" font-weight="700" letter-spacing="2.6" fill="#FFD9B0">
                   <textPath href="#circ">BRING YOUR OWN BOTTLE ✦ BRING YOUR OWN BOTTLE ✦</textPath>
                 </text>
               </g>
@@ -849,7 +849,7 @@ const INVITE = {
     const sw = w / n, depth = Math.min(w < 600 ? 42 : 54, sw * .38);
     let out = `<line x1="0" y1="5" x2="${w}" y2="5" stroke="#6B4A1F" stroke-width="1.5"/>`;
     // fairy lights: one long draped strand, swags twice as wide as the garland's, sitting under it
-    const fw = sw * 2, fd = h - 26, cols = ["#FFF1C9", "#FFF1C9", "#F5B83D", "#FF8DB8", "#FFF1C9", "#7FE3D4"];
+    const fw = sw * 2, fd = h - 26, cols = ["#FFF1C9", "#FFF1C9", "#F4B060", "#FF8A80", "#FFF1C9", "#F7A9A0"];
     let bi = 0;
     for (let x0 = -sw; x0 < w + sw; x0 += fw) {
       const yAt = t => 12 + 4 * fd * t * (1 - t);
@@ -878,7 +878,7 @@ const INVITE = {
       out += `<path d="M${x} 6 q-14 2 -18 12 q12 0 18 -12 z M${x} 6 q14 2 18 12 q-12 0 -18 -12 z" fill="#3E8E5A"/>`;
       for (let j = 0; j < len; j++) out += bloom(x, 18 + j * 12, 5.6, j % 2 ? "mgB" : "mgA");
       const yb = 18 + len * 12;
-      out += `<path d="M${x - 4} ${yb} l4 9 l4 -9 z" fill="#E8508A"/>`;
+      out += `<path d="M${x - 4} ${yb} l4 9 l4 -9 z" fill="#FF4040"/>`;
     }
     svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
     svg.innerHTML = out;
@@ -894,11 +894,11 @@ const INVITE = {
   const Sky = (() => {
     const cv = $("#sky"), ctx = cv.getContext("2d");
     const PAL = [
-      ["#FFE3A3", "#F5B83D", "#FFB347", "#FFF4D6"],
-      ["#FF8DB8", "#E8508A", "#FFD3E4", "#FFB0CC"],
-      ["#9FF0E1", "#43C6B5", "#E8FFF9", "#7FE3D4"],
-      ["#C9B6FF", "#8E6CFF", "#F1EBFF", "#B39DFF"],
-      ["#FFFFFF", "#FFE9C2", "#F5B83D", "#FFF6E0"],
+      ["#FFE3A3", "#F4B060", "#FFB347", "#FFF4D6"],
+      ["#FF8A80", "#FF4040", "#FFD0C9", "#FFA79E"],
+      ["#FFC4BC", "#F0857C", "#FFEDEA", "#F7A9A0"],
+      ["#FF9A9A", "#E0303A", "#FFE5E5", "#FF6B6B"],
+      ["#FFFFFF", "#FFE9C2", "#F4B060", "#FFF6E0"],
       ["#FF9F5A", "#F07C1E", "#FFD27A", "#FFE3A3"]
     ];
     const TYPES = ["peony", "ring", "willow", "crossette", "peony", "double"];
@@ -971,7 +971,7 @@ const INVITE = {
         ctx.globalAlpha = 1;
         ctx.strokeStyle = "#FFE3A3"; ctx.lineWidth = 2.4;
         ctx.beginPath(); ctx.moveTo(r.px, r.py + 10); ctx.lineTo(r.x, r.y); ctx.stroke();
-        if (Math.random() < .6 && parts.length < 1400) parts.push({ x: r.x, y: r.y, px: r.x, py: r.y, vx: rnd(-.5, .5), vy: rnd(.5, 1.5), life: .7, decay: .04, g: .02, drag: .96, c: "#F5B83D", w: 1.4 });
+        if (Math.random() < .6 && parts.length < 1400) parts.push({ x: r.x, y: r.y, px: r.x, py: r.y, vx: rnd(-.5, .5), vy: rnd(.5, 1.5), life: .7, decay: .04, g: .02, drag: .96, c: "#F4B060", w: 1.4 });
         if (p >= 1) { rockets.splice(i, 1); burst(r.x, r.y, r.o); }
       }
 
@@ -1030,7 +1030,7 @@ const INVITE = {
       }
     }
     function confetti(n = 140) {
-      const cols = ["#F5B83D", "#E8508A", "#43C6B5", "#FFDFA3", "#8E6CFF", "#FFFFFF"];
+      const cols = ["#F4B060", "#FF4040", "#F0857C", "#FFD9B0", "#E0303A", "#FFFFFF"];
       for (let i = 0; i < n; i++) parts.push({
         conf: true, x: rnd(0, W), y: rnd(-H * .4, -10), vx: rnd(-1, 1), vy: rnd(1.6, 3.4),
         rot: rnd(0, 6.28), vr: rnd(-.12, .12), w: rnd(6, 10), h: rnd(10, 16),

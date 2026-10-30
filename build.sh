@@ -1,9 +1,9 @@
 #!/bin/sh
 # Builds the standalone index.html (with link-preview tags) from page.html
 cd "$(dirname "$0")"
-IMG="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg"
+IMG="https://raw.githubusercontent.com/yatharthtaneja/diwali-invite/main/preview.jpg?v=red"
 {
-printf '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="theme-color" content="#0F0B1E">\n'
+printf '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="theme-color" content="#120607">\n'
 cat <<META
 <meta name="description" content="Lights up. Cards out. Glasses full. Cards, drinks and golden lights on Fri, 6 Nov at Sushant Lok 3, Gurugram. BYOB.">
 <meta property="og:type" content="website">
